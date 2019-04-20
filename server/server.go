@@ -8,8 +8,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/jordan-wright/http-boilerplate/server/api/v1"
-	"github.com/jordan-wright/unindexed"
+	"github.com/orlmonteverde/http-boilerplate/server/api/v1"
 )
 
 // HelloWorld is a sample handler
@@ -36,8 +35,8 @@ func NewRouter() http.Handler {
 
 	// Set up static file serving
 	staticPath, _ := filepath.Abs("../../static/")
-	fs := http.FileServer(unindexed.Dir(staticPath))
-	router.Handle("/*", fs)
+	fs := http.FileServer(http.Dir(staticPath))
+	router.Handle("/", fs)
 
 	return router
 }
